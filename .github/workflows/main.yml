@@ -1,25 +1,17 @@
-name: Demo Environment Variable and Secret
+name: Hello World
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  demo-job:
+  build:
     runs-on: ubuntu-latest
-    env:
-      MY_VAR: "Hello World!"
-    env_file:
-      - .env
-    secrets:
-      MY_SECRET: ${{ secrets.SECRET_VALUE }}
+
     steps:
-      - name: Echo environment variable
-        run: echo "MY_VAR value: ${{ env.MY_VAR }}"
-      - name: Echo secret (masked)
-        run: echo "MY_SECRET value: ${{ secrets.MY_SECRET }}"
-      - name: Use secret in script
-        run: |
-          echo "Building something with MY_SECRET..."
-          # Replace with your actual script using ${{ secrets.MY_SECRET }}
-          echo "Secret-based command: ... (redacted)"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Echo Hello World
+        run: echo "Hello, World!"
