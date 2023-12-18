@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MY_VAR: "Hello World!"
+    env_file:
+      - .env
     secrets:
       MY_SECRET: ${{ secrets.SECRET_VALUE }}
     steps:
@@ -21,4 +23,3 @@ jobs:
           echo "Building something with MY_SECRET..."
           # Replace with your actual script using ${{ secrets.MY_SECRET }}
           echo "Secret-based command: ... (redacted)"
-
